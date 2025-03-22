@@ -1,3 +1,4 @@
+from datetime import time
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from services.models import Service
@@ -34,6 +35,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_employee = models.BooleanField(default=False, verbose_name="Является мастером")
+    schedule_start = models.TimeField(default=time(9, 0))
+    schedule_end = models.TimeField(default=time(18, 0))
     services = models.ManyToManyField(Service, blank=True, related_name="masters", verbose_name="Предоставляемые услуги")
 
     objects = CustomUserManager()
