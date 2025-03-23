@@ -32,6 +32,7 @@ class Appointment(models.Model):
         verbose_name="Услуга"
     )
     date_time = models.DateTimeField(verbose_name="Дата и время")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время создания")
 
     class Meta:
         unique_together = ("master", "date_time")
