@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Appointment, Service
+from users.serializers import UserSerializer
 
 User = get_user_model()
 
@@ -30,3 +31,12 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ["master", "date_time"]
+
+
+class AppointmentDetailSerializer(serializers.ModelSerializer):
+    master = UserSerializer()
+    service = ServiceSerializer()
+    
+    class Meta:
+        model = Appointment
+        fields = '__all__'
