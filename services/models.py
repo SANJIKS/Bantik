@@ -5,6 +5,7 @@ from django.conf import settings
 class Service(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="Название услуги")
     duration = models.IntegerField(verbose_name="Длительность (мин)", default=30)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=500)
 
     class Meta:
         verbose_name = "Услуга"
