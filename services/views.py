@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import Appointment, Service
 from .serializers import AppointmentDetailSerializer, AppointmentSerializer, CreateAppointmentSerializer, ServiceSerializer
@@ -13,6 +14,7 @@ class BusyAppointmentsView(APIView):
 
 
 class AppointmentListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Appointment.objects.all()
     serializer_class = AppointmentDetailSerializer
 
