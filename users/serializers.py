@@ -26,7 +26,7 @@ class CustomTokenRefreshSerializer(TokenRefreshSerializer):
         user_id = refresh_token['user_id']
         
         try:
-            user = User.objects.get(uuid=user_id)
+            user = User.objects.get(id=user_id)
         except User.DoesNotExist:
             raise serializers.ValidationError("Пользователь не найден.")
         
